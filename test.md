@@ -3,7 +3,7 @@
 |   0 | Liverpool 2021-22       | Bayern Munich 2021-22   | Different     |             |
 |   1 | Bayern Munich 2021-22   | Bayern Munich 2021-22   | Same          | Same Team   |
 |   2 | Atalanta 2020-21        | RB Salzburg 2021-22     | Different     |             |
-|   3 | RB Leipzig 2020-21      | RB Salzburg 2021-22     | Different     | Same Team   |
+|   3 | RB Leipzig 2020-21      | RB Salzburg 2021-22     | Different     |             |
 |   4 | Ajax 2021-22            | Manchester City 2021-22 | Different     |             |
 |   5 | Bayern Munich 2017-18   | Manchester City 2021-22 | Different     |             |
 |   6 | Porto 2020-21           | Sporting CP 2021-22     | Different     |             |
