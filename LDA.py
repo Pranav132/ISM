@@ -16,15 +16,15 @@ test = pd.DataFrame(columns=list(data))
 prev = 0
 for i, row in data.iterrows():
     if row[-1] != prev:
-        test = pd.concat([test, curr.tail(2)], axis=0)
-        train = pd.concat([train, curr.head(len(curr)-2)], axis=0)
+        test = pd.concat([test, curr.tail(1)], axis=0)
+        train = pd.concat([train, curr.head(len(curr)-1)], axis=0)
         curr = curr.iloc[0:0]
 
     curr.loc[len(curr.index)] = row
     prev = row[-1]
 
-test = pd.concat([test, curr.tail(2)], axis=0)
-train = pd.concat([train, curr.head(len(curr)-2)], axis=0)
+test = pd.concat([test, curr.tail(1)], axis=0)
+train = pd.concat([train, curr.head(len(curr)-1)], axis=0)
 curr = curr.iloc[0:0]
 
 
