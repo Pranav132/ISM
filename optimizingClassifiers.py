@@ -18,15 +18,15 @@ test = pd.DataFrame(columns=list(data))
 prev = 0
 for i, row in data.iterrows():
     if row[-1] != prev:
-        test = pd.concat([test, curr.tail(2)], axis=0)
-        train = pd.concat([train, curr.head(len(curr)-2)], axis=0)
+        test = pd.concat([test, curr.tail(1)], axis=0)
+        train = pd.concat([train, curr.head(len(curr)-1)], axis=0)
         curr = curr.iloc[0:0]
 
     curr.loc[len(curr.index)] = row
     prev = row[-1]
 
-test = pd.concat([test, curr.tail(2)], axis=0)
-train = pd.concat([train, curr.head(len(curr)-2)], axis=0)
+test = pd.concat([test, curr.tail(1)], axis=0)
+train = pd.concat([train, curr.head(len(curr)-1)], axis=0)
 curr = curr.iloc[0:0]
 
 
@@ -60,7 +60,7 @@ knn = 1
 max = 0
 maxknn = 0
 
-while knn < 754:
+while knn < 675:
     model = KNeighborsClassifier(n_neighbors=knn)
     # Train the model using the training sets
     model.fit(X_train_array,Y_train_array)
@@ -90,18 +90,3 @@ for i in kernels:
         best_score = score
         best_kernel = i
 print('Best Kernel: ', best_kernel) 
-
-best_score = -1
-best_C = -1
-best_gamma = -1
-
-for C in np.arange(0.05, 2.05, 0.05):
-    for gamma in np.arange(0.001, 0.101, 0.001):
-        model = SVC(kernel='linear', gamma=gamma, C=C)
-        model.fit(X_train_array, Y_train_array)
-        score = model.score(X_test_array, Y_test_array)
-        if score > best_score:
-            best_score = score
-            best_C = C
-            best_gamma = gamma
-print('Highest Accuracy Score: ', best_score, best_C, best_gamma)  
