@@ -25,15 +25,15 @@ test = pd.DataFrame(columns=list(data))
 prev = 0
 for i, row in data.iterrows():
     if row[-1] != prev:
-        test = pd.concat([test, curr.tail(2)], axis=0)
-        train = pd.concat([train, curr.head(len(curr)-2)], axis=0)
+        test = pd.concat([test, curr.tail(1)], axis=0)
+        train = pd.concat([train, curr.head(len(curr)-1)], axis=0)
         curr = curr.iloc[0:0]
 
     curr.loc[len(curr.index)] = row
     prev = row[-1]
 
-test = pd.concat([test, curr.tail(2)], axis=0)
-train = pd.concat([train, curr.head(len(curr)-2)], axis=0)
+test = pd.concat([test, curr.tail(1)], axis=0)
+train = pd.concat([train, curr.head(len(curr)-1)], axis=0)
 curr = curr.iloc[0:0]
 
 
@@ -126,14 +126,14 @@ test = pd.DataFrame(columns=list(data))
 prev = 0
 for i, row in data.iterrows():
     if row[-1] != prev:
-        test = pd.concat([test, curr.tail(2)], axis=0)
-        train = pd.concat([train, curr.head(len(curr)-2)], axis=0)
+        test = pd.concat([test, curr.tail(1)], axis=0)
+        train = pd.concat([train, curr.head(len(curr)-1)], axis=0)
         curr = curr.iloc[0:0]
     curr.loc[len(curr.index)] = row
     prev = row[-1]
 
-test = pd.concat([test, curr.tail(2)], axis=0)
-train = pd.concat([train, curr.head(len(curr)-2)], axis=0)
+test = pd.concat([test, curr.tail(1)], axis=0)
+train = pd.concat([train, curr.head(len(curr)-1)], axis=0)
 curr = curr.iloc[0:0]
 
 x_train = train.iloc[:, : len(list(data)) - 1]
@@ -186,13 +186,3 @@ accuracies = [heading, nochange, scaled, pcalist, scaledpca]
 accuracies = pd.DataFrame(accuracies)
 print(accuracies.to_string(index=False, header=False))
 
-
-model = LinearDiscriminantAnalysis()
-# Train the model using the training sets
-model.fit(X_train_array,Y_train_array)
-#Predict Output
-predicted= model.predict(X_test_array) 
-print(list(predicted))
-
-metric = accuracy_score(y_test, predicted)
-print("Accuracy:", metric)
